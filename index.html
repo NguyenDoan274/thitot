@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Thi Tốt! 🍀</title>
+  
+  <!-- Google Fonts for cute, soft typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================
+       1. LAYOUT & BACKGROUND SYSTEM
+       ========================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    :root {
+      --font-cute: 'Quicksand', sans-serif;
+      --font-body: 'Nunito', sans-serif;
+      --color-text-main: #3a614f;
+      --color-text-highlight: #208b53;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--font-body);
+      color: var(--color-text-main);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    /* Nền gradient chuyển động dịu mắt */
+    body {
+      background: linear-gradient(-45deg, #e0f2fe, #f0fdf4, #dcfce7, #ccfbf1);
+      background-size: 400% 400%;
+      animation: bg-gradient 15s ease infinite;
+    }
+    
+    @keyframes bg-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Background Sparkles (Các hạt sáng bay nhẹ trong gió) */
+    #bg-sparkles-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .bg-sparkle {
+      position: absolute;
+      pointer-events: none;
+      animation: drift-up infinite linear;
+      opacity: 0;
+    }
+    
+    .bg-sparkle-dot {
+      width: 5px;
+      height: 5px;
+      background-color: #fef08a;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #fef08a;
+      opacity: 0.6;
+    }
+    
+    @keyframes drift-up {
+      0% {
+        transform: translate(0, 0);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.6;
+      }
+      85% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translate(var(--drift-x), var(--drift-y));
+        opacity: 0;
+      }
+    }
+    
+    /* ==========================================
+       1b. BACKGROUND CLOUDS (MÂY TRÔI)
+       ========================================== */
+    .cloud-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .cloud {
+      position: absolute;
+      top: var(--top, 10%);
+      left: -200px;
+      opacity: var(--opacity, 0.6);
+      transform: scale(var(--scale, 1));
+      filter: blur(var(--blur, 0px));
+      animation: cloud-drift var(--duration, 45s) linear infinite;
+      animation-delay: var(--delay, 0s);
+    }
+    
+    @keyframes cloud-drift {
+      0% {
+        transform: translateX(-15vw) scale(var(--scale, 1));
+      }
+      100% {
+        transform: translateX(115vw) scale(var(--scale, 1));
+      }
+    }
+    
+    /* ==========================================
+       2. WISH CARD (GLASSMORPHISM)
+       ========================================== */
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+      z-index: 5;
+      transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    .card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px) saturate(120%);
+      -webkit-backdrop-filter: blur(20px) saturate(120%);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 28px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 
+        0 10px 30px rgba(167, 243, 208, 0.25),
+        0 25px 50px rgba(5, 150, 105, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .card h1 {
+      font-family: var(--font-cute);
+      font-size: 2.1rem;
+      background: linear-gradient(135deg, #208b53 0%, #3cbc6b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+    
+    .card p.main-wish {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--color-text-main);
+      line-height: 1.65;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    
+    /* ==========================================
+       3. INTERACTIVE BUTTON & TEXT
+       ========================================== */
+    .encouragement-box {
+      min-height: 70px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .encouragement-text {
+      font-family: var(--font-cute);
+      font-size: 1rem;
+      color: var(--color-text-highlight);
+      font-weight: 700;
+      padding: 12px 18px;
+      background: rgba(209, 250, 229, 0.4);
+      border-radius: 16px;
+      border: 1.5px dashed rgba(52, 211, 153, 0.6);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .encouragement-text.updating {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    
+    .btn-luck {
+      background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+      color: white;
+      border: none;
+      padding: 15px 32px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: var(--font-cute);
+      box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      outline: none;
+      animation: pulse-glow 2s infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25), 0 0 0 0 rgba(52, 211, 153, 0.5); }
+      70% { box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25), 0 0 0 10px rgba(52, 211, 153, 0); }
+      100% { box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25), 0 0 0 0 rgba(52, 211, 153, 0); }
+    }
+    
+    .btn-luck:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(5, 150, 105, 0.35);
+      background: linear-gradient(135deg, #6ee7b7 0%, #047857 100%);
+      animation: none;
+    }
+    
+    .btn-luck:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+    
+    /* Chữ ký ngoài tấm thiệp */
+    .signature {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: var(--color-text-main);
+      font-weight: 700;
+      opacity: 0;
+      font-family: var(--font-cute);
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+      animation: signature-fade 1.5s ease-out 0.8s forwards;
+    }
+    
+    @keyframes signature-fade {
+      100% { opacity: 0.85; }
+    }
+
+    /* ==========================================
+       3b. CUTE SUN STYLE (MẶT TRỜI)
+       ========================================== */
+    .sun-container {
+      position: absolute;
+      top: 4%;
+      right: 6%;
+      z-index: 3;
+      pointer-events: none;
+      transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .sun {
+      width: 110px;
+      height: 110px;
+      animation: float-sun 6s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+
+    @keyframes float-sun {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-10px) rotate(8deg); }
+    }
+    
+    /* ==========================================
+       4. BUTTERFLIES SYSTEM
+       ========================================== */
+    .butterfly-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    
+    /* Layering 3D: Một số bướm bay sau card, một số bay trước card */
+    .path-1, .path-2, .path-5 { z-index: 4; }
+    .path-3, .path-4 { z-index: 6; }
+    
+    .path-1 { animation: fly-1 28s linear infinite; }
+    .path-2 { animation: fly-2 32s linear infinite; animation-delay: -8s; }
+    .path-3 { animation: fly-3 24s linear infinite; animation-delay: -16s; }
+    .path-4 { animation: fly-4 26s linear infinite; animation-delay: -4s; }
+    .path-5 { animation: fly-5 30s linear infinite; animation-delay: -12s; }
+    
+    .butterfly-hover {
+      animation: butterfly-bob 3s ease-in-out infinite alternate;
+    }
+    
+    @keyframes butterfly-bob {
+      0% { transform: translateY(0px) rotate(-3deg); }
+      50% { transform: translateY(-15px) rotate(3deg); }
+      100% { transform: translateY(5px) rotate(-2deg); }
+    }
+    
+    .butterfly {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .wing {
+      position: absolute;
+      width: 18px;
+      height: 28px;
+      border-radius: 50% 50% 20% 50%;
+      top: 4px;
+    }
+    
+    .wing-left {
+      left: 2px;
+      transform-origin: right center;
+      background: linear-gradient(135deg, var(--wing-light), var(--wing-dark));
+      animation: flap-left 0.12s ease-in-out infinite alternate;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .wing-right {
+      right: 2px;
+      transform-origin: left center;
+      background: linear-gradient(225deg, var(--wing-light), var(--wing-dark));
+      animation: flap-right 0.12s ease-in-out infinite alternate;
+      border-radius: 50% 50% 50% 20%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .wing::after {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+      top: 6px;
+    }
+    
+    .wing-left::after { left: 4px; }
+    .wing-right::after { right: 4px; }
+    
+    .butterfly-body {
+      position: absolute;
+      width: 2.5px;
+      height: 20px;
+      background: #334155;
+      border-radius: 10px;
+      z-index: 5;
+    }
+    
+    .antenna {
+      position: absolute;
+      width: 5px;
+      height: 7px;
+      border: 1px solid #334155;
+      border-bottom: none;
+      top: -5px;
+    }
+    
+    .antenna-left {
+      border-right: none;
+      border-top-left-radius: 5px;
+      left: -3px;
+      transform: rotate(-15deg);
+    }
+    
+    .antenna-right {
+      border-left: none;
+      border-top-right-radius: 5px;
+      right: -3px;
+      transform: rotate(15deg);
+    }
+    
+    @keyframes flap-left {
+      0% { transform: scaleX(1) rotate(5deg); }
+      100% { transform: scaleX(0.15) rotate(-5deg); }
+    }
+    @keyframes flap-right {
+      0% { transform: scaleX(1) rotate(-5deg); }
+      100% { transform: scaleX(0.15) rotate(5deg); }
+    }
+    
+    /* Màu sắc bướm đa dạng pastel */
+    .butterfly.pink { --wing-light: #fbcfe8; --wing-dark: #f472b6; }
+    .butterfly.blue { --wing-light: #bae6fd; --wing-dark: #38bdf8; }
+    .butterfly.yellow { --wing-light: #fef9c3; --wing-dark: #facc15; }
+    .butterfly.purple { --wing-light: #f3e8ff; --wing-dark: #c084fc; }
+    .butterfly.mint { --wing-light: #ccfbf1; --wing-dark: #2dd4bf; }
+    
+    /* Quỹ đạo bay chi tiết của bướm */
+    @keyframes fly-1 {
+      0% { transform: translate(-10vw, 75vh) rotate(50deg) scale(0.9); }
+      30% { transform: translate(30vw, 45vh) rotate(15deg) scale(1.05); }
+      60% { transform: translate(65vw, 60vh) rotate(60deg) scale(0.95); }
+      85% { transform: translate(85vw, 35vh) rotate(-10deg) scale(1.1); }
+      100% { transform: translate(110vw, 55vh) rotate(30deg) scale(0.9); }
+    }
+    
+    @keyframes fly-2 {
+      0% { transform: translate(110vw, 80vh) rotate(-60deg) scale(0.8); }
+      35% { transform: translate(75vw, 40vh) rotate(-30deg) scale(0.95); }
+      70% { transform: translate(40vw, 65vh) rotate(-70deg) scale(0.85); }
+      100% { transform: translate(-10vw, 30vh) rotate(-45deg) scale(0.8); }
+    }
+    
+    @keyframes fly-3 {
+      0% { transform: translate(15vw, 110vh) rotate(-80deg) scale(1.2); }
+      45% { transform: translate(35vw, 55vh) rotate(-55deg) scale(1.1); }
+      75% { transform: translate(55vw, 30vh) rotate(-85deg) scale(1.25); }
+      100% { transform: translate(70vw, -10vh) rotate(-70deg) scale(1.2); }
+    }
+    
+    @keyframes fly-4 {
+      0% { transform: translate(85vw, 110vh) rotate(-100deg) scale(0.95); }
+      50% { transform: translate(60vw, 50vh) rotate(-75deg) scale(1); }
+      100% { transform: translate(35vw, -10vh) rotate(-90deg) scale(0.95); }
+    }
+    
+    @keyframes fly-5 {
+      0% { transform: translate(-10vw, 25vh) rotate(70deg) scale(1); }
+      40% { transform: translate(45vw, 35vh) rotate(25deg) scale(0.9); }
+      80% { transform: translate(80vw, 15vh) rotate(65deg) scale(1.05); }
+      100% { transform: translate(110vw, 20vh) rotate(40deg) scale(1); }
+    }
+    
+    /* ==========================================
+       5. MEADOW & CLOVER FIELD (ĐỒNG CỎ)
+       ========================================== */
+    .meadow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      z-index: 2;
+      pointer-events: none;
+      transition: height 0.3s ease;
+    }
+    
+    .meadow-layer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .layer-far { z-index: 1; }
+    .layer-mid { z-index: 2; }
+    .layer-near { z-index: 3; }
+    
+    .layer-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .wave {
+      position: absolute;
+      bottom: 0;
+      width: 200%;
+      transform-origin: 50% 48%;
+    }
+    
+    /* Các lớp sóng cỏ với màu gradient pastel và độ cao khác nhau */
+    .wave-far {
+      height: 85%;
+      background: linear-gradient(180deg, rgba(209, 250, 229, 0.8) 0%, rgba(167, 243, 208, 0.9) 100%);
+      border-radius: 45% 48% 0 0;
+      animation: wave-float 16s linear infinite;
+      opacity: 0.9;
+    }
+    
+    .wave-mid {
+      height: 60%;
+      background: linear-gradient(180deg, rgba(167, 243, 208, 0.85) 0%, rgba(110, 231, 183, 0.92) 100%);
+      border-radius: 43% 47% 0 0;
+      animation: wave-float-reverse 13s linear infinite;
+    }
+    
+    .wave-near {
+      height: 38%;
+      background: linear-gradient(180deg, rgba(110, 231, 183, 0.9) 0%, rgba(16, 185, 129, 0.96) 100%);
+      border-radius: 40% 45% 0 0;
+      animation: wave-float 10s linear infinite;
+    }
+    
+    @keyframes wave-float {
+      0% { transform: translateX(0) scaleY(1); }
+      50% { transform: translateX(-25%) scaleY(0.93); }
+      100% { transform: translateX(-50%) scaleY(1); }
+    }
+    
+    @keyframes wave-float-reverse {
+      0% { transform: translateX(-50%) scaleY(1); }
+      50% { transform: translateX(-25%) scaleY(0.97); }
+      100% { transform: translateX(0) scaleY(1); }
+    }
+    
+    /* Phần tử mọc trên đồng cỏ (cỏ 4 lá, hoa, ngọn cỏ) */
+    .meadow-element {
+      position: absolute;
+      bottom: var(--bottom, 0%);
+      left: var(--left, 10%);
+      transform-origin: bottom center;
+      animation: sway var(--speed, 4s) ease-in-out infinite alternate;
+      animation-delay: var(--delay, 0s);
+      opacity: var(--opacity, 1);
+    }
+    
+    @keyframes sway {
+      0% { transform: rotate(-7deg) scale(var(--scale, 1)); }
+      100% { transform: rotate(7deg) scale(var(--scale, 1)); }
+    }
+    
+    .clover-svg, .flower-svg, .grass-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .clover-svg {
+      filter: drop-shadow(0 2px 4px rgba(4, 120, 87, 0.08));
+    }
+    
+    /* Hiệu ứng phát sáng cho các cỏ 4 lá may mắn đặc biệt */
+    .clover-glow svg {
+      filter: drop-shadow(0 0 6px rgba(110, 231, 183, 0.85)) drop-shadow(0 2px 4px rgba(4, 120, 87, 0.12));
+      animation: clover-pulse 3s ease-in-out infinite alternate;
+    }
+    
+    @keyframes clover-pulse {
+      0% { filter: drop-shadow(0 0 4px rgba(110, 231, 183, 0.6)) drop-shadow(0 2px 3px rgba(4, 120, 87, 0.1)); }
+      100% { filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.95)) drop-shadow(0 2px 3px rgba(4, 120, 87, 0.1)); }
+    }
+
+    /* Đom đóm/hạt phấn bay từ đồng cỏ */
+    .meadow-firefly {
+      position: absolute;
+      background-color: #bef264;
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 6px #bef264, 0 0 12px rgba(190, 242, 100, 0.5);
+      opacity: 0;
+      z-index: 4; /* Bay phía trên đồng cỏ nhưng dưới tấm thiệp */
+    }
+
+    @keyframes firefly-drift {
+      0% {
+        transform: translate(0, 0) scale(0.6);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.75;
+      }
+      80% {
+        opacity: 0.75;
+      }
+      100% {
+        transform: translate(var(--drift-x), var(--drift-y)) scale(1.1);
+        opacity: 0;
+      }
+    }
+    
+    /* ==========================================
+       6. INTERACTIVE EXPLOSION PARTICLES
+       ========================================== */
+    #effect-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      overflow: hidden;
+    }
+    
+    .particle-clover, .particle-sparkle {
+      position: absolute;
+      pointer-events: none;
+      animation: float-particle var(--duration) cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+    }
+    
+    @keyframes float-particle {
+      0% {
+        transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(0.2);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(calc(var(--tx) * 0.15), calc(var(--ty) * 0.15)) rotate(calc(var(--tr) * 0.15)) scale(1.1);
+      }
+      100% {
+        transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0);
+        opacity: 0;
+      }
+    }
+    
+    /* ==========================================
+       7. RESPONSIVE MEDIA QUERIES
+       ========================================== */
+    @media (max-width: 600px) {
+      .card {
+        padding: 30px 20px;
+        width: 90%;
+        border-radius: 24px;
+      }
+      .card h1 {
+        font-size: 1.7rem;
+        margin-bottom: 15px;
+      }
+      .card p.main-wish {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        line-height: 1.55;
+      }
+      .btn-luck {
+        padding: 13px 26px;
+        font-size: 1rem;
+      }
+      .encouragement-text {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+      }
+      .meadow {
+        height: 130px;
+      }
+      .sun {
+        width: 80px;
+        height: 80px;
+      }
+      .cloud {
+        max-width: 90px;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hidden global SVG gradients and definitions -->
+  <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+    <defs>
+      <!-- Màu chuyển sắc cho lá cỏ 4 lá Lime -->
+      <linearGradient id="cloverGradLime" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#bef264" />
+        <stop offset="100%" stop-color="#16a34a" />
+      </linearGradient>
+      <!-- Màu chuyển sắc cho lá cỏ 4 lá Emerald -->
+      <linearGradient id="cloverGradEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#34d399" />
+        <stop offset="100%" stop-color="#047857" />
+      </linearGradient>
+      <!-- Màu chuyển sắc cho lá cỏ 4 lá Mint -->
+      <linearGradient id="cloverGradMint" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#a7f3d0" />
+        <stop offset="100%" stop-color="#0d9488" />
+      </linearGradient>
+      <!-- Màu chuyển sắc cho lá cỏ 4 lá lấp lánh lúc bay ra -->
+      <linearGradient id="cloverGradSparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#a7f3d0" />
+        <stop offset="100%" stop-color="#10b981" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Container chứa các hạt sáng lững lờ dưới nền -->
+  <div id="bg-sparkles-container"></div>
+
+  <!-- Lớp mây trôi dưới nền -->
+  <div class="cloud-layer">
+    <!-- Mây 1 -->
+    <svg class="cloud" viewBox="0 0 120 50" width="140" height="60" style="--top: 6%; --delay: 0s; --duration: 55s; --scale: 1.15; --opacity: 0.6; --blur: 0.5px;">
+      <path d="M 10,40 A 12,12 0 0,1 30,22 A 18,18 0 0,1 75,20 A 14,14 0 0,1 100,28 A 10,10 0 0,1 110,40 A 5,5 0 0,1 10,40 Z" fill="#ffffff" />
+    </svg>
+    <!-- Mây 2 -->
+    <svg class="cloud" viewBox="0 0 120 50" width="100" height="42" style="--top: 14%; --delay: -16s; --duration: 45s; --scale: 0.85; --opacity: 0.45; --blur: 1px;">
+      <path d="M 10,40 A 12,12 0 0,1 30,22 A 18,18 0 0,1 75,20 A 14,14 0 0,1 100,28 A 10,10 0 0,1 110,40 A 5,5 0 0,1 10,40 Z" fill="#ffffff" />
+    </svg>
+    <!-- Mây 3 -->
+    <svg class="cloud" viewBox="0 0 120 50" width="165" height="70" style="--top: 23%; --delay: -32s; --duration: 70s; --scale: 1.35; --opacity: 0.35; --blur: 0px;">
+      <path d="M 10,40 A 12,12 0 0,1 30,22 A 18,18 0 0,1 75,20 A 14,14 0 0,1 100,28 A 10,10 0 0,1 110,40 A 5,5 0 0,1 10,40 Z" fill="#ffffff" />
+    </svg>
+    <!-- Mây 4 -->
+    <svg class="cloud" viewBox="0 0 120 50" width="115" height="48" style="--top: 32%; --delay: -8s; --duration: 50s; --scale: 0.95; --opacity: 0.5; --blur: 0.8px;">
+      <path d="M 10,40 A 12,12 0 0,1 30,22 A 18,18 0 0,1 75,20 A 14,14 0 0,1 100,28 A 10,10 0 0,1 110,40 A 5,5 0 0,1 10,40 Z" fill="#ffffff" />
+    </svg>
+    <!-- Mây 5 -->
+    <svg class="cloud" viewBox="0 0 120 50" width="130" height="55" style="--top: 42%; --delay: -24s; --duration: 62s; --scale: 1.05; --opacity: 0.38; --blur: 1.2px;">
+      <path d="M 10,40 A 12,12 0 0,1 30,22 A 18,18 0 0,1 75,20 A 14,14 0 0,1 100,28 A 10,10 0 0,1 110,40 A 5,5 0 0,1 10,40 Z" fill="#ffffff" />
+    </svg>
+  </div>
+
+  <!-- Bướm bay xung quanh -->
+  <!-- Con bướm 1 (Màu hồng) -->
+  <div class="butterfly-container path-1">
+    <div class="butterfly-hover">
+      <div class="butterfly pink">
+        <div class="wing wing-left"></div>
+        <div class="butterfly-body">
+          <div class="antenna antenna-left"></div>
+          <div class="antenna antenna-right"></div>
+        </div>
+        <div class="wing wing-right"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Con bướm 2 (Màu xanh dương) -->
+  <div class="butterfly-container path-2">
+    <div class="butterfly-hover">
+      <div class="butterfly blue">
+        <div class="wing wing-left"></div>
+        <div class="butterfly-body">
+          <div class="antenna antenna-left"></div>
+          <div class="antenna antenna-right"></div>
+        </div>
+        <div class="wing wing-right"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Con bướm 3 (Màu vàng) -->
+  <div class="butterfly-container path-3">
+    <div class="butterfly-hover">
+      <div class="butterfly yellow">
+        <div class="wing wing-left"></div>
+        <div class="butterfly-body">
+          <div class="antenna antenna-left"></div>
+          <div class="antenna antenna-right"></div>
+        </div>
+        <div class="wing wing-right"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Con bướm 4 (Màu tím) -->
+  <div class="butterfly-container path-4">
+    <div class="butterfly-hover">
+      <div class="butterfly purple">
+        <div class="wing wing-left"></div>
+        <div class="butterfly-body">
+          <div class="antenna antenna-left"></div>
+          <div class="antenna antenna-right"></div>
+        </div>
+        <div class="wing wing-right"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Con bướm 5 (Màu xanh Mint) -->
+  <div class="butterfly-container path-5">
+    <div class="butterfly-hover">
+      <div class="butterfly mint">
+        <div class="wing wing-left"></div>
+        <div class="butterfly-body">
+          <div class="antenna antenna-left"></div>
+          <div class="antenna antenna-right"></div>
+        </div>
+        <div class="wing wing-right"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cute Sun ở góc trên bên phải -->
+  <div class="sun-container" id="sun-parallax">
+    <svg class="sun" viewBox="0 0 100 100">
+      <defs>
+        <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fffde7" />
+          <stop offset="70%" stop-color="#fff59d" />
+          <stop offset="100%" stop-color="#ffe082" />
+        </radialGradient>
+      </defs>
+      <!-- Sun Rays -->
+      <g class="sun-rays" stroke="#ffe082" stroke-width="4.5" stroke-linecap="round">
+        <line x1="50" y1="12" x2="50" y2="4" />
+        <line x1="50" y1="88" x2="50" y2="96" />
+        <line x1="12" y1="50" x2="4" y2="50" />
+        <line x1="88" y1="50" x2="96" y2="50" />
+        <line x1="23" y1="23" x2="17" y2="17" />
+        <line x1="77" y1="77" x2="83" y2="83" />
+        <line x1="23" y1="77" x2="17" y2="83" />
+        <line x1="77" y1="23" x2="83" y2="17" />
+      </g>
+      <!-- Sun Body -->
+      <circle cx="50" cy="50" r="28" fill="url(#sun-glow)" filter="drop-shadow(0 0 10px rgba(255, 235, 59, 0.45))" />
+      <!-- Eyes -->
+      <circle cx="43" cy="46" r="3" fill="#4e342e" />
+      <circle cx="57" cy="46" r="3" fill="#4e342e" />
+      <!-- Blush -->
+      <ellipse cx="37" cy="52" rx="4.5" ry="2.5" fill="#ff8a80" opacity="0.75" />
+      <ellipse cx="63" cy="52" rx="4.5" ry="2.5" fill="#ff8a80" opacity="0.75" />
+      <!-- Cute Smile -->
+      <path d="M 46,52 Q 50,56 54,52" fill="none" stroke="#4e342e" stroke-width="2.5" stroke-linecap="round" />
+    </svg>
+  </div>
+
+  <!-- Khu vực trung tâm: Tấm thiệp chúc mừng -->
+  <div class="card-container" id="card-parallax">
+    <div class="card">
+      <h1 id="mainTitle">Chúc thi thật tốt 🍀</h1>
+      
+      <p class="main-wish">
+        Mong bạn luôn bình tĩnh, tự tin và làm bài thật suôn sẻ. Những điều may mắn nhất sẽ luôn ở bên em!
+      </p>
+      
+      <!-- Hộp chứa thông điệp ngẫu nhiên xuất hiện khi nhấn nút -->
+      <div class="encouragement-box">
+        <p id="encouragementText" class="encouragement-text">Nhấp nút dưới đây để đón nhận điều may mắn ngọt ngào nhé! ✨</p>
+      </div>
+      
+      <!-- Nút nhận may mắn tương tác -->
+      <button id="btnLuck" class="btn-luck">
+        Nhận may mắn 🍀
+      </button>
+    </div>
+    
+    <!-- Chữ ký bên dưới card -->
+    <div class="signature">From someone who believes in you ✨</div>
+  </div>
+
+  <!-- Đồng cỏ ở đáy màn hình với 3 lớp chiều sâu -->
+  <div class="meadow">
+    <!-- Lớp 1: Nền xa (Far layer) - màu xanh mint nhạt, cỏ hoa nhỏ, mờ -->
+    <div class="meadow-layer layer-far">
+      <div class="wave wave-far"></div>
+      <div class="layer-content"></div>
+    </div>
+    
+    <!-- Lớp 2: Lớp giữa (Mid layer) - màu xanh lá tươi, cỏ hoa vừa -->
+    <div class="meadow-layer layer-mid">
+      <div class="wave wave-mid"></div>
+      <div class="layer-content"></div>
+    </div>
+    
+    <!-- Lớp 3: Tiền cảnh (Near layer) - màu xanh đậm hơn, cỏ hoa to và nét -->
+    <div class="meadow-layer layer-near">
+      <div class="wave wave-near"></div>
+      <div class="layer-content"></div>
+    </div>
+  </div>
+
+  <!-- Container chứa các hiệu ứng bay lên khi nhấn nút -->
+  <div id="effect-container"></div>
+
+  <!-- ==========================================
+       8. JAVASCRIPT LOGIC
+       ========================================== -->
+  <script>
+    // ==========================================
+    // CẤU HÌNH TÊN NGƯỜI NHẬN TẠI ĐÂY
+    // Thay thế "..". bằng tên người bạn của bạn
+    // ==========================================
+    const friendName = "Mỹ Đình"; 
+
+    // Danh sách câu chúc may mắn, động viên ngẫu nhiên
+    const encouragementQuotes = [
+      "Thi tốt nha, đừng căng thẳng quá ✨",
+  "Bình tĩnh làm bài, đọc kỹ đề là ổn 💪",
+  "Mong hôm nay em gặp toàn câu tủ 🍀",
+  "Mong đề hôm nay dễ thở một chút",
+  "Cố nốt môn này rồi nghỉ xả hơi 🌿",
+  "Chúc em gặp may trong phòng thi 🌟",
+   "Thi xong là nhẹ đầu rồi, cố lên nha"
+    ];
+
+    let lastQuoteIndex = -1;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Tự động hiển thị tên người bạn trong tiêu đề chính
+      const mainTitleElement = document.getElementById("mainTitle");
+      if (mainTitleElement && friendName) {
+        mainTitleElement.innerHTML = `Chúc ${friendName} thi thật tốt 🍀`;
+      }
+      
+      // 2. Tạo hiệu ứng các hạt sáng bay nhẹ ở nền (drift up background sparkles)
+      createBackgroundSparkles();
+      
+      // 3. Tạo cỏ bốn lá và hoa trên đồng cỏ động
+      generateMeadowElements();
+      
+      // 4. Tạo hiệu ứng đom đóm bay lên từ đồng cỏ
+      createMeadowSparkles();
+      
+      // 5. Xử lý sự kiện bấm nút nhận may mắn
+      const btnLuck = document.getElementById("btnLuck");
+      btnLuck.addEventListener("click", (e) => {
+        showNextQuote();
+        
+        // Lấy toạ độ tâm của nút bấm để tạo vụ nổ hiệu ứng cỏ 4 lá bay ra
+        const rect = btnLuck.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        
+        createExplosion(x, y);
+      });
+
+      // 6. Hiệu ứng Parallax khi di chuyển chuột (chỉ áp dụng trên máy tính)
+      const cardParallax = document.getElementById('card-parallax');
+      const sunParallax = document.getElementById('sun-parallax');
+      
+      if (window.matchMedia('(pointer: fine)').matches) {
+        document.addEventListener('mousemove', (e) => {
+          const moveX = (e.clientX - window.innerWidth / 2) / 50;
+          const moveY = (e.clientY - window.innerHeight / 2) / 50;
+          
+          if (cardParallax) {
+            cardParallax.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          }
+          if (sunParallax) {
+            sunParallax.style.transform = `translate(${-moveX * 1.6}px, ${-moveY * 1.6}px)`;
+          }
+        });
+      }
+    });
+
+    /**
+     * Tạo các hạt lấp lánh trôi nhẹ ở nền
+     */
+    function createBackgroundSparkles() {
+      const container = document.getElementById('bg-sparkles-container');
+      if (!container) return;
+      
+      const count = 25; // Số lượng hạt bay nền
+      for (let i = 0; i < count; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'bg-sparkle';
+        sparkle.style.left = `${Math.random() * 100}vw`;
+        sparkle.style.top = `${Math.random() * 100}vh`;
+        
+        // Hạt bay lệch nhẹ theo trục X và trôi lên theo trục Y
+        sparkle.style.setProperty('--drift-x', `${(Math.random() - 0.5) * 60}px`);
+        sparkle.style.setProperty('--drift-y', `${-120 - Math.random() * 180}px`);
+        
+        // Thời gian lệch và tốc độ bay ngẫu nhiên
+        sparkle.style.animationDelay = `${Math.random() * 8}s`;
+        sparkle.style.animationDuration = `${6 + Math.random() * 8}s`;
+        
+        // Ngẫu nhiên hạt hình tròn hoặc hình ngôi sao nhỏ
+        const isStar = Math.random() > 0.5;
+        if (isStar) {
+          sparkle.innerHTML = `
+            <svg viewBox="0 0 24 24" width="10" height="10">
+              <path d="M12,2 L14.5,9.5 L22,12 L14.5,14.5 L12,22 L9.5,14.5 L2,12 L9.5,9.5 Z" fill="#fef08a" opacity="0.6"/>
+            </svg>
+          `;
+        } else {
+          sparkle.innerHTML = `<div class="bg-sparkle-dot"></div>`;
+        }
+        container.appendChild(sparkle);
+      }
+    }
+
+    /**
+     * Đổi sang câu chúc ngẫu nhiên với hiệu ứng chuyển trang động mượt mà
+     */
+    function showNextQuote() {
+      const quoteText = document.getElementById("encouragementText");
+      if (!quoteText) return;
+      
+      // Kích hoạt class làm mờ dần
+      quoteText.classList.add("updating");
+      
+      // Chờ quá trình mờ dần hoàn tất rồi mới đổi text và hiện lên lại
+      setTimeout(() => {
+        let newIndex;
+        // Đảm bảo không trùng câu chúc vừa hiển thị liền kề trước đó
+        do {
+          newIndex = Math.floor(Math.random() * encouragementQuotes.length);
+        } while (newIndex === lastQuoteIndex && encouragementQuotes.length > 1);
+        
+        lastQuoteIndex = newIndex;
+        quoteText.textContent = encouragementQuotes[newIndex];
+        
+        // Bỏ class làm mờ để chữ hiển thị căng tràn/phóng to nhẹ lên
+        quoteText.classList.remove("updating");
+      }, 250); 
+    }
+
+    /**
+     * Tạo hiệu ứng vỡ hạt bay toả ra (Cỏ 4 lá & Ngôi sao lấp lánh) khi bấm nút
+     */
+    function createExplosion(x, y) {
+      const container = document.getElementById('effect-container');
+      if (!container) return;
+      
+      const count = 16; // Số lượng lá và sao bay ra
+      
+      for (let i = 0; i < count; i++) {
+        const isClover = Math.random() > 0.45; // Tỷ lệ cỏ 4 lá bay lên chiếm khoảng 55%
+        const el = document.createElement('div');
+        el.className = isClover ? 'particle-clover' : 'particle-sparkle';
+        
+        // Tính toán vector bay toả ra theo hình vòng cung hướng lên trên
+        const angle = (Math.random() * 1.3 + 0.85) * Math.PI; // Hướng bay chéo lên trên
+        const distance = 60 + Math.random() * 180;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance - 80; // Trọng lực nhẹ kéo bay lên nhiều hơn
+        const tr = (Math.random() - 0.5) * 720; // Góc xoay ngẫu nhiên
+        const duration = 1.0 + Math.random() * 0.8;
+        const scale = 0.5 + Math.random() * 0.6;
+        
+        el.style.setProperty('--tx', `${tx}px`);
+        el.style.setProperty('--ty', `${ty}px`);
+        el.style.setProperty('--tr', `${tr}deg`);
+        el.style.setProperty('--duration', `${duration}s`);
+        
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        
+        if (isClover) {
+          // Clone cỏ 4 lá thu nhỏ dùng hệ màu sắc lấp lánh sáng hơn
+          el.innerHTML = `
+            <svg viewBox="0 0 100 100" width="30" height="30">
+              <path d="M50,50 C30,30 30,10 50,25 C70,10 70,30 50,50" fill="url(#cloverGradSparkle)" />
+              <path d="M50,50 C30,30 30,10 50,25 C70,10 70,30 50,50" fill="url(#cloverGradSparkle)" transform="rotate(90 50 50)" />
+              <path d="M50,50 C30,30 30,10 50,25 C70,10 70,30 50,50" fill="url(#cloverGradSparkle)" transform="rotate(180 50 50)" />
+              <path d="M50,50 C30,30 30,10 50,25 C70,10 70,30 50,50" fill="url(#cloverGradSparkle)" transform="rotate(270 50 50)" />
+            </svg>
+          `;
+        } else {
+          // Hạt ngôi sao may mắn lấp lánh màu vàng
+          el.innerHTML = `
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <path d="M12,2 L14.8,8.6 L22,9.2 L16.5,14 L18.2,21 L12,17.3 L5.8,21 L7.5,14 L2,9.2 L9.2,8.6 Z" fill="#fbbf24" />
+            </svg>
+          `;
+        }
+        
+        container.appendChild(el);
+        
+        // Tự động dọn dẹp các phần tử DOM sau khi animation kết thúc để tránh lag trang
+        setTimeout(() => {
+          el.remove();
+        }, duration * 1000);
+      }
+    }
+
+    /**
+     * Tạo cỏ 4 lá, hoa và các ngọn cỏ nhỏ ngẫu nhiên trên 3 lớp chiều sâu
+     */
+    function generateMeadowElements() {
+      const farContent = document.querySelector('.layer-far .layer-content');
+      const midContent = document.querySelector('.layer-mid .layer-content');
+      const nearContent = document.querySelector('.layer-near .layer-content');
+      
+      if (!farContent || !midContent || !nearContent) return;
+      
+      farContent.innerHTML = '';
+      midContent.innerHTML = '';
+      nearContent.innerHTML = '';
+      
+      // Cấu hình các lớp cỏ: [container, count, bottomMin%, bottomMax%, scaleMin, scaleMax, opacityMin, opacityMax, blur, depth_key]
+      const config = [
+        {
+          container: farContent,
+          count: 18,
+          bottomMin: 60,
+          bottomMax: 85,
+          scaleMin: 0.35,
+          scaleMax: 0.55,
+          opacityMin: 0.65,
+          opacityMax: 0.8,
+          blur: '0.8px',
+          isFar: true
+        },
+        {
+          container: midContent,
+          count: 22,
+          bottomMin: 35,
+          bottomMax: 65,
+          scaleMin: 0.65,
+          scaleMax: 0.85,
+          opacityMin: 0.9,
+          opacityMax: 1.0,
+          blur: '0px',
+          isMid: true
+        },
+        {
+          container: nearContent,
+          count: 14,
+          bottomMin: 5,
+          bottomMax: 35,
+          scaleMin: 0.95,
+          scaleMax: 1.25,
+          opacityMin: 1.0,
+          opacityMax: 1.0,
+          blur: '0px',
+          isNear: true
+        }
+      ];
+      
+      const petalColors = ['#fbcfe8', '#fef9c3', '#ffffff', '#f472b6']; // Hồng nhạt, vàng nhạt, trắng, hồng sậm
+      const grassColorsFar = ['#a7f3d0', '#86efac', '#6ee7b7'];
+      const grassColorsMid = ['#34d399', '#10b981', '#6ee7b7'];
+      const grassColorsNear = ['#059669', '#047857', '#10b981'];
+      
+      config.forEach(layer => {
+        for (let i = 0; i < layer.count; i++) {
+          const rand = Math.random();
+          let html = '';
+          let elType = 'clover';
+          
+          if (rand < 0.5) {
+            // Clover (Cỏ 4 lá)
+            elType = 'clover';
+            let grad = 'cloverGradEmerald';
+            if (layer.isFar) grad = Math.random() > 0.5 ? 'cloverGradMint' : 'cloverGradLime';
+            else if (layer.isMid) grad = Math.random() > 0.6 ? 'cloverGradLime' : 'cloverGradEmerald';
+            else grad = 'cloverGradEmerald';
+            
+            html = getCloverSVG(grad);
+          } else if (rand < 0.85) {
+            // Grass (Ngọn cỏ nhỏ)
+            elType = 'grass';
+            let color = '#34d399';
+            if (layer.isFar) color = grassColorsFar[Math.floor(Math.random() * grassColorsFar.length)];
+            else if (layer.isMid) color = grassColorsMid[Math.floor(Math.random() * grassColorsMid.length)];
+            else color = grassColorsNear[Math.floor(Math.random() * grassColorsNear.length)];
+            
+            html = getGrassSVG(color);
+          } else {
+            // Flower (Bông hoa pastel nhỏ)
+            elType = 'flower';
+            const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+            html = getFlowerSVG(color);
+          }
+          
+          const el = document.createElement('div');
+          el.className = `meadow-element ${elType}-element`;
+          
+          // Phân bố toạ độ và chuyển động ngẫu nhiên để tạo độ sâu tự nhiên nhất
+          const left = Math.random() * 105 - 2.5; 
+          const bottom = layer.bottomMin + Math.random() * (layer.bottomMax - layer.bottomMin);
+          const scale = layer.scaleMin + Math.random() * (layer.scaleMax - layer.scaleMin);
+          const opacity = layer.opacityMin + Math.random() * (layer.opacityMax - layer.opacityMin);
+          const speed = 3.2 + Math.random() * 2.8;
+          const delay = -Math.random() * 6;
+          
+          if (elType === 'clover' && !layer.isFar && Math.random() > 0.75) {
+            el.classList.add('clover-glow');
+          }
+          
+          el.style.setProperty('--left', `${left}%`);
+          el.style.setProperty('--bottom', `${bottom}%`);
+          el.style.setProperty('--scale', scale);
+          el.style.setProperty('--speed', `${speed}s`);
+          el.style.setProperty('--delay', `${delay}s`);
+          el.style.setProperty('--opacity', opacity);
+          
+          if (layer.blur !== '0px') {
+            el.style.filter = `blur(${layer.blur})`;
+          }
+          
+          let w = 36, h = 36;
+          if (elType === 'grass') { w = 18; h = 45; }
+          else if (elType === 'flower') { w = 26; h = 45; }
+          
+          el.style.width = `${w}px`;
+          el.style.height = `${h}px`;
+          el.innerHTML = html;
+          
+          layer.container.appendChild(el);
+        }
+      });
+    }
+
+    /**
+     * Trả về chuỗi SVG cỏ 4 lá hoàn chỉnh, chi tiết có cuống và highlight
+     */
+    function getCloverSVG(gradId) {
+      return `
+        <svg viewBox="0 0 100 100" class="clover-svg">
+          <!-- Cuống cỏ -->
+          <path d="M50,50 Q48,75 42,92" fill="none" stroke="#047857" stroke-width="5" stroke-linecap="round" />
+          <!-- Lá 1 (trên) -->
+          <path d="M50,50 C30,30 30,10 50,25 C70,10 70,30 50,50" fill="url(#${gradId})" />
+          <circle cx="50" cy="28" r="1.8" fill="#ffffff" opacity="0.65" />
+          <!-- Lá 2 (phải) -->
+          <path d="M50,50 C30,30 30,10 50,25 C70,10 70,30 50,50" fill="url(#${gradId})" transform="rotate(90 50 50)" />
+          <circle cx="72" cy="50" r="1.8" fill="#ffffff" opacity="0.65" />
+          <!-- Lá 3 (dưới) -->
+          <path d="M50,50 C30,30 30,10 50,25 C70,10 70,30 50,50" fill="url(#${gradId})" transform="rotate(180 50 50)" />
+          <circle cx="50" cy="72" r="1.8" fill="#ffffff" opacity="0.65" />
+          <!-- Lá 4 (trái) -->
+          <path d="M50,50 C30,30 30,10 50,25 C70,10 70,30 50,50" fill="url(#${gradId})" transform="rotate(270 50 50)" />
+          <circle cx="28" cy="50" r="1.8" fill="#ffffff" opacity="0.65" />
+          <!-- Nhụy hoa/Tâm cỏ phát sáng nhỏ -->
+          <circle cx="50" cy="50" r="3.5" fill="#fef08a" opacity="0.9" />
+        </svg>
+      `;
+    }
+
+    /**
+     * Trả về chuỗi SVG ngọn cỏ nhỏ cong nghiêng ngẫu nhiên
+     */
+    function getGrassSVG(color) {
+      const isLeft = Math.random() > 0.5;
+      const path = isLeft 
+        ? "M20,80 Q4,30 36,4 Q14,42 20,80" 
+        : "M20,80 Q36,30 4,4 Q26,42 20,80";
+      return `
+        <svg viewBox="0 0 40 80" class="grass-svg">
+          <path d="${path}" fill="${color}" />
+        </svg>
+      `;
+    }
+
+    /**
+     * Trả về chuỗi SVG hoa cúc hoạ mi pastel 5 cánh dễ thương
+     */
+    function getFlowerSVG(petalColor) {
+      return `
+        <svg viewBox="0 0 60 80" class="flower-svg">
+          <path d="M30,30 Q27,55 24,80" fill="none" stroke="#047857" stroke-width="3.5" stroke-linecap="round" />
+          <!-- Cánh hoa -->
+          <circle cx="30" cy="17" r="8" fill="${petalColor}" />
+          <circle cx="42.5" cy="26" r="8" fill="${petalColor}" />
+          <circle cx="37.5" cy="40.5" r="8" fill="${petalColor}" />
+          <circle cx="22.5" cy="40.5" r="8" fill="${petalColor}" />
+          <circle cx="17.5" cy="26" r="8" fill="${petalColor}" />
+          <!-- Nhuỵ vàng -->
+          <circle cx="30" cy="30" r="7" fill="#facc15" />
+        </svg>
+      `;
+    }
+
+    /**
+     * Tạo đom đóm cỏ (Fireflies) bay nhẹ lên từ lòng đồng cỏ
+     */
+    function createMeadowSparkles() {
+      const container = document.getElementById('bg-sparkles-container');
+      if (!container) return;
+      
+      setInterval(() => {
+        // Khống chế số lượng để tránh quá tải
+        if (container.children.length > 55) return;
+        
+        const firefly = document.createElement('div');
+        firefly.className = 'meadow-firefly';
+        
+        const startX = Math.random() * 100;
+        const startY = 10 + Math.random() * 90; // Xuất phát bên trong vùng cỏ
+        const size = 3.5 + Math.random() * 4;
+        
+        firefly.style.left = `${startX}vw`;
+        firefly.style.bottom = `${startY}px`;
+        firefly.style.width = `${size}px`;
+        firefly.style.height = `${size}px`;
+        
+        const driftX = (Math.random() - 0.25) * 130; // Trôi nhẹ sang phải theo chiều gió
+        const driftY = 90 + Math.random() * 160;     // Bay bổng lên trên
+        const duration = 4.5 + Math.random() * 4.5;
+        
+        firefly.style.setProperty('--drift-x', `${driftX}px`);
+        firefly.style.setProperty('--drift-y', `${-driftY}px`);
+        firefly.style.animation = `firefly-drift ${duration}s ease-out forwards`;
+        
+        container.appendChild(firefly);
+        
+        setTimeout(() => {
+          firefly.remove();
+        }, duration * 1000);
+      }, 400);
+    }
+  </script>
+</body>
+</html>
